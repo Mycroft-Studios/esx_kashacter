@@ -29,15 +29,15 @@ if ESX.GetConfig().Multichar then
 
 	GetTables()
 
-	RegisterServerEvent("kashactersS:SetupCharacters")
-	AddEventHandler('kashactersS:SetupCharacters', function()
+	RegisterServerEvent("esx_mutlichar:SetupCharacters")
+	AddEventHandler('esx_mutlichar:SetupCharacters', function()
 		local src = source
 		local Characters = GetPlayerCharacters(src)
-		TriggerClientEvent('kashactersC:SetupUI', src, Characters)
+		TriggerClientEvent('esx_mutlichar:SetupUI', src, Characters)
 	end)
 
-	RegisterServerEvent("kashactersS:CharacterChosen")
-	AddEventHandler('kashactersS:CharacterChosen', function(charid, ischar)
+	RegisterServerEvent("esx_mutlichar:CharacterChosen")
+	AddEventHandler('esx_mutlichar:CharacterChosen', function(charid, ischar)
 		local src = source
 		local isNew = true
 		if ischar then isNew = false end
@@ -49,12 +49,12 @@ if ESX.GetConfig().Multichar then
 		end
 	end)
 
-	RegisterServerEvent("kashactersS:DeleteCharacter")
-	AddEventHandler('kashactersS:DeleteCharacter', function(charid)
+	RegisterServerEvent("esx_mutlichar:DeleteCharacter")
+	AddEventHandler('esx_mutlichar:DeleteCharacter', function(charid)
 		local src = source
 		if type(charid) == "number" and string.len(charid) == 1 then
 			DeleteCharacter(ESX.GetIdentifier(src), charid)
-			TriggerClientEvent("kashactersC:ReloadCharacters", src)
+			TriggerClientEvent("esx_mutlichar:ReloadCharacters", src)
 		else
 			-- Trigger Ban Event here to ban individuals trying to use SQL Injections
 		end
